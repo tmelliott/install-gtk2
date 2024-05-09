@@ -52,7 +52,10 @@ export async function run(): Promise<void> {
           core.info(`Extracting ${dlpath} ...`)
           const extractionPath = await tc.extractZip(dlpath)
           core.info(`Moving ${extractionPath} to ${gtkpath} ...`)
-          await io.cp(extractionPath, gtkpath)
+          await io.cp(extractionPath, gtkpath, {
+            recursive: true,
+            force: false
+          })
         })
       })
     )
