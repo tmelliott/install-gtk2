@@ -40,6 +40,10 @@ export async function run(): Promise<void> {
       })
     }
 
+    // log URLs
+    core.info('Using the following URLs:')
+    config.forEach(({ url }) => core.info(url))
+
     await Promise.all(
       config.map(async ({ url, gtkpath }) => {
         await core.group(`Downloading ${url} to ${gtkpath}`, async () => {
