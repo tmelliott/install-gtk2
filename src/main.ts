@@ -29,13 +29,13 @@ export async function run(): Promise<void> {
     const arch64: boolean = arch.includes('64')
     if (arch32) {
       config.push({
-        url: 'http://ftp.gnome.org/pub/gnome/binaries/win32/gtk+/2.22/gtk+-bundle_2.22.1-20101227_win32.zip',
+        url: 'https://ftp.gnome.org/pub/gnome/binaries/win32/gtk+/2.22/gtk+-bundle_2.22.1-20101227_win32.zip',
         gtkpath: path.join(gtkDir, 'i386')
       })
     }
     if (arch64) {
       config.push({
-        url: 'http://ftp.gnome.org/pub/gnome/binaries/win64/gtk+/2.22/gtk+-bundle_2.22.1-20101229_win64.zip',
+        url: 'https://ftp.gnome.org/pub/gnome/binaries/win64/gtk+/2.22/gtk+-bundle_2.22.1-20101229_win64.zip',
         gtkpath: path.join(gtkDir, 'x64')
       })
     }
