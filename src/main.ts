@@ -42,7 +42,7 @@ export async function run(): Promise<void> {
 
     // log URLs
     core.info('Using the following URLs:')
-    config.forEach(({ url }) => core.info(url))
+    config.map(({ url }) => core.info(url))
 
     await Promise.all(
       config.map(async ({ url, gtkpath }) => {
