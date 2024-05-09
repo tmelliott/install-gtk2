@@ -28831,16 +28831,19 @@ async function run() {
         const arch64 = arch.includes('64');
         if (arch32) {
             config.push({
-                url: 'http://ftp.gnome.org/pub/gnome/binaries/win32/gtk+/2.22/gtk+-bundle_2.22.1-20101227_win32.zip',
+                url: 'https://ftp.gnome.org/pub/gnome/binaries/win32/gtk+/2.22/gtk+-bundle_2.22.1-20101227_win32.zip',
                 gtkpath: path.join(gtkDir, 'i386')
             });
         }
         if (arch64) {
             config.push({
-                url: 'http://ftp.gnome.org/pub/gnome/binaries/win64/gtk+/2.22/gtk+-bundle_2.22.1-20101229_win64.zip',
+                url: 'https://ftp.gnome.org/pub/gnome/binaries/win64/gtk+/2.22/gtk+-bundle_2.22.1-20101229_win64.zip',
                 gtkpath: path.join(gtkDir, 'x64')
             });
         }
+        // log URLs
+        core.info('Using the following URLs:');
+        config.map(({ url }) => core.info(url));
         await Promise.all(config.map(async ({ url, gtkpath }) => {
             await core.group(`Downloading ${url} to ${gtkpath}`, async () => {
                 core.info(`Downloading ${url} ...`);
@@ -28848,7 +28851,10 @@ async function run() {
                 core.info(`Extracting ${dlpath} ...`);
                 const extractionPath = await tc.extractZip(dlpath);
                 core.info(`Moving ${extractionPath} to ${gtkpath} ...`);
-                await io.mv(extractionPath, gtkpath);
+                await io.cp(extractionPath, gtkpath, {
+                    recursive: true,
+                    force: false
+                });
             });
         }));
         // add to PATH
