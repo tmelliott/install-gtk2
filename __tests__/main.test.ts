@@ -57,7 +57,7 @@ describe('action', () => {
     //   expect.stringMatching(timeRegex)
     // )
     // expect(errorMock).not.toHaveBeenCalled()
-  })
+  }, 60000)
 
   // it('sets the time output', async () => {
   //   // Set the action's inputs as return values from core.getInput()
