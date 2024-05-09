@@ -1,6 +1,7 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Install GTK2 on Windows'
+description:
+  'Installs GTK2 binary for Windows, specifically for the RGtk2 package in R.'
+author: 'Tom Elliott'
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
@@ -9,10 +10,15 @@ branding:
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  arch:
+    description:
+      'The architecture of the GTK2 binary to install, comma-separated.'
     required: true
-    default: '1000'
+    default: '64'
+  gtk_dir:
+    description: 'The directory to install GTK2 to.'
+    required: true
+    default: 'C:\\GTK'
 
 # Define your outputs here.
 outputs:
